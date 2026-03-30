@@ -44,4 +44,41 @@ async function getActivity(token) {
   return activite
 }
 
-export { getActivity }
+async function getWeeklyStats(token) {
+  if (utiliserMock) {
+    return {
+      dureeTotale: 140,
+      distanceTotale: 21.7
+    }
+  }
+
+  const reponse = await fetch(
+    "http://localhost:8000/api/user-activity?startWeek=2025-06-23&endWeek=2025-06-30",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+
+  if (!reponse.ok) {
+    throw new Error("Erreur lors de la récupération des statistiques hebdomadaires")
+  }
+
+  const donneesApi = await reponse.json()
+
+  const dureeTotale = donneesApi.reduce((total, session) => {
+    return total + session.duration
+  }, 0)
+
+  const distanceTotale = donneesApi.reduce((total, session) => {
+    return total + session.distance
+  }, 0)
+
+  return {
+    dureeTotale: dureeTotale,
+    distanceTotale: Number(distanceTotale.toFixed(1))
+  }
+}
+
+export { getActivity, getWeeklyStats }

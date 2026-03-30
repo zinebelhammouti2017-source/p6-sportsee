@@ -1,34 +1,39 @@
 import { useEffect, useState } from "react"
 import GoalChart from "../charts/GoalChart"
 import { getGoal } from "../services/goalService"
+import { getWeeklyStats } from "../services/activityService"
 import useAuth from "../hooks/useAuth"
 
 function WeeklySection() {
   const [objectif, setObjectif] = useState(null)
+  const [statistiquesSemaine, setStatistiquesSemaine] = useState(null)
   const [erreur, setErreur] = useState(null)
 
-  const { userId } = useAuth()
+  const { userId, token } = useAuth()
 
   useEffect(() => {
-    async function fetchGoal() {
+    async function fetchWeeklyData() {
       try {
         const donneesObjectif = await getGoal(userId)
+        const donneesStatistiques = await getWeeklyStats(token)
+
         setObjectif(donneesObjectif)
+        setStatistiquesSemaine(donneesStatistiques)
       } catch {
         setErreur("Impossible de charger les données hebdomadaires.")
       }
     }
 
-    if (userId) {
-      fetchGoal()
+    if (userId && token) {
+      fetchWeeklyData()
     }
-  }, [userId])
+  }, [userId, token])
 
   if (erreur) {
     return <p>{erreur}</p>
   }
 
-  if (!objectif) {
+  if (!objectif || !statistiquesSemaine) {
     return <p>Chargement...</p>
   }
 
@@ -86,7 +91,8 @@ function WeeklySection() {
               Durée d’activité
             </p>
             <h3 style={{ fontSize: "20px", fontWeight: "600", color: "#2338ff" }}>
-              140 <span style={{ color: "#bfc5ff", fontWeight: "400" }}>minutes</span>
+              {statistiquesSemaine.dureeTotale}{" "}
+              <span style={{ color: "#bfc5ff", fontWeight: "400" }}>minutes</span>
             </h3>
           </div>
 
@@ -105,7 +111,8 @@ function WeeklySection() {
               Distance
             </p>
             <h3 style={{ fontSize: "20px", fontWeight: "600", color: "#ff5a3c" }}>
-              21.7 <span style={{ color: "#f3b8ab", fontWeight: "400" }}>kilomètres</span>
+              {statistiquesSemaine.distanceTotale}{" "}
+              <span style={{ color: "#f3b8ab", fontWeight: "400" }}>kilomètres</span>
             </h3>
           </div>
         </div>
