@@ -5,6 +5,7 @@ import PerformanceSection from "../components/PerformanceSection"
 import WeeklySection from "../components/WeeklySection"
 import useAuth from "../hooks/useAuth"
 import { getUser } from "../services/userService"
+import Footer from "../components/Footer"
 
 function Dashboard() {
   const { token, userId } = useAuth()
@@ -29,28 +30,42 @@ function Dashboard() {
 
   if (erreur) {
     return (
-      <main style={{ padding: "40px 0 80px" }}>
+      <main className="page">
         <TopNav />
-        <p>{erreur}</p>
+        <div className="page-content">
+          <p style={{ maxWidth: "1130px", margin: "0 auto" }}>{erreur}</p>
+        </div>
+        <Footer />
       </main>
     )
   }
 
   if (!utilisateur) {
     return (
-      <main style={{ padding: "40px 0 80px" }}>
+      <main className="page">
         <TopNav />
-        <p>Chargement...</p>
+        <div className="page-content">
+          <p style={{ maxWidth: "1130px", margin: "0 auto" }}>Chargement...</p>
+        </div>
+        <Footer />
       </main>
     )
   }
 
   return (
-    <main style={{ padding: "40px 0 80px" }}>
+    <main className="page">
       <TopNav />
-      <UserHeader utilisateur={utilisateur} />
-      <PerformanceSection />
-      <WeeklySection />
+
+      <div className="page-content">
+        <UserHeader
+          utilisateur={utilisateur}
+          totalDistance={utilisateur.statistics.totalDistance}
+        />
+        <PerformanceSection />
+        <WeeklySection />
+      </div>
+
+      <Footer />
     </main>
   )
 }

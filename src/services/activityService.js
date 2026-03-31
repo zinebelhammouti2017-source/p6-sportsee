@@ -23,7 +23,6 @@ async function getActivity(token) {
   const donneesApi = await reponse.json()
 
   const tailleGroupe = Math.ceil(donneesApi.length / 4)
-
   const groupes = []
 
   for (let i = 0; i < donneesApi.length; i += tailleGroupe) {
@@ -81,4 +80,69 @@ async function getWeeklyStats(token) {
   }
 }
 
-export { getActivity, getWeeklyStats }
+async function getProfileStats(token, dateInscription) {
+  if (utiliserMock) {
+    return {
+      totalDistance: 312,
+      totalSessions: 41,
+      totalDuration: 1635,
+      totalCalories: 25000,
+      joursDeRepos: 9
+    }
+  }
+
+  const aujourdhui = new Date()
+  const dateFin = aujourdhui.toISOString().split("T")[0]
+
+  const reponse = await fetch(
+    `http://localhost:8000/api/user-activity?startWeek=${dateInscription}&endWeek=${dateFin}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+
+  if (!reponse.ok) {
+    throw new Error("Erreur lors de la récupération des statistiques du profil")
+  }
+
+  const donneesApi = await reponse.json()
+
+  const totalDistance = donneesApi.reduce((total, session) => {
+    return total + session.distance
+  }, 0)
+
+  const totalSessions = donneesApi.length
+
+  const totalDuration = donneesApi.reduce((total, session) => {
+    return total + session.duration
+  }, 0)
+
+  const totalCalories = donneesApi.reduce((total, session) => {
+    return total + session.caloriesBurned
+  }, 0)
+
+  const joursAvecActivite = new Set(
+    donneesApi.map((session) => session.date)
+  ).size
+
+  const debut = new Date(dateInscription)
+  const fin = new Date(dateFin)
+
+  const differenceTemps = fin - debut
+  const nombreJoursDepuisInscription =
+    Math.floor(differenceTemps / (1000 * 60 * 60 * 24)) + 1
+
+  const joursDeRepos = nombreJoursDepuisInscription - joursAvecActivite
+
+  return {
+    totalDistance: Number(totalDistance.toFixed(1)),
+    totalSessions: totalSessions,
+    totalDuration: totalDuration,
+    totalCalories: totalCalories,
+    joursDeRepos: joursDeRepos
+  }
+}
+
+export { getActivity, getWeeklyStats, getProfileStats }

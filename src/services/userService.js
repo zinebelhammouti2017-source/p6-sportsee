@@ -24,6 +24,7 @@ async function getUser(token) {
       firstName: donneesApi.profile.firstName,
       lastName: donneesApi.profile.lastName,
       age: donneesApi.profile.age,
+      gender: donneesApi.profile.gender || null,
       height: donneesApi.profile.height,
       weight: donneesApi.profile.weight,
       profilePicture: donneesApi.profile.profilePicture,

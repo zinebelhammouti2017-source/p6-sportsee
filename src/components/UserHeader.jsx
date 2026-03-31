@@ -1,14 +1,34 @@
-function UserHeader({ utilisateur }) {
-
+function UserHeader({ utilisateur, totalDistance }) {
   if (!utilisateur) {
     return null
   }
+
+  const dateInscription = new Date(utilisateur.userInfos.createdAt)
+
+  const mois = [
+    "janvier",
+    "février",
+    "mars",
+    "avril",
+    "mai",
+    "juin",
+    "juillet",
+    "août",
+    "septembre",
+    "octobre",
+    "novembre",
+    "décembre"
+  ]
+
+  const dateFormatee = `${dateInscription.getDate()} ${
+    mois[dateInscription.getMonth()]
+  } ${dateInscription.getFullYear()}`
 
   return (
     <section
       style={{
         maxWidth: "1130px",
-        margin: "0 auto 60px",
+        margin: "0 auto 30px",
         backgroundColor: "#f6f6f6",
         borderRadius: "16px",
         padding: "36px 54px",
@@ -26,8 +46,8 @@ function UserHeader({ utilisateur }) {
         }}
       >
         <img
-          src="/images/profil.jpg"
-          alt="Profil utilisateur"
+          src={utilisateur.userInfos.profilePicture}
+          alt={`Profil de ${utilisateur.userInfos.firstName}`}
           style={{
             width: "112px",
             height: "112px",
@@ -54,7 +74,7 @@ function UserHeader({ utilisateur }) {
               fontSize: "16px"
             }}
           >
-            Membre depuis le 14 juin 2023
+            Membre depuis le {dateFormatee}
           </p>
         </div>
       </div>
@@ -89,7 +109,9 @@ function UserHeader({ utilisateur }) {
           }}
         >
           <span style={{ fontSize: "26px" }}>✦</span>
-          <span style={{ fontSize: "20px", fontWeight: "500" }}>312 km</span>
+          <span style={{ fontSize: "20px", fontWeight: "500" }}>
+            {totalDistance} km
+          </span>
         </div>
       </div>
     </section>
