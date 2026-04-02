@@ -53,12 +53,12 @@ L'utilisateur se connecte via un formulaire :
 
   ## 🧱 Architecture du projet
 src/
-├── components/
-├── pages/
-├── services/
-├── hooks/
-├── context/
-└── styles/
+components/
+pages/
+services/
+hooks/
+context/
+styles/
 
 ## Installation et lancement
 
