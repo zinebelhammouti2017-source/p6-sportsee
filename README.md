@@ -51,19 +51,18 @@ L'utilisateur se connecte via un formulaire :
 - Stockage du token côté client
 - Protection des routes avec un système de `PrivateRoute`
 
-  ## Architecture du projet
-
-  src/
-├── components/ # Composants réutilisables
-├── pages/ # Pages principales (Login, Dashboard, Profile)
-├── services/ # Appels API
-├── hooks/ # Hooks personnalisés
-├── context/ # Gestion globale (authentification)
-└── styles/ # CSS
+  ## 🧱 Architecture du projet
+src/
+├── components/
+├── pages/
+├── services/
+├── hooks/
+├── context/
+└── styles/
 
 ## Installation et lancement
 
--git clone https://github.com/ton-repo/sportsee.git
+git clone https://github.com/zinebelhammouti2017-source/p6-sportsee.git
 -cd sportsee
 -npm install
 -npm run dev
