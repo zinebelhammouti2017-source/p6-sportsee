@@ -1,53 +1,54 @@
-# 🏃 SportSee - Dashboard de performance sportive
+#  SportSee - Dashboard de performance sportive
 
-## 📌 Description
+##  Présentation
 
-SportSee est une application web permettant de visualiser les performances sportives d’un utilisateur à travers un tableau de bord interactif.
+SportSee est une application web permettant de visualiser les performances sportives d’un utilisateur à travers un tableau de bord interactif et moderne.
 
-Ce projet a été réalisé dans le cadre de la formation OpenClassrooms.
-
----
-
-## 🎯 Objectifs du projet
-
-- Créer une interface React moderne
-- Connecter une API pour récupérer les données utilisateur
-- Afficher des statistiques sous forme de graphiques
-- Gérer l’authentification utilisateur avec token sécurisé
+L'objectif est de fournir une interface claire, rapide et intuitive pour suivre son activité physique et analyser ses statistiques.
 
 ---
 
-## ⚙️ Technologies utilisées
+##  Fonctionnalités principales
+
+-  Authentification utilisateur sécurisée
+-  Tableau de bord des performances
+-  Visualisation de données dynamiques (graphiques)
+-  Page profil utilisateur
+-  Navigation fluide avec React Router
+
+---
+
+##  Fonctionnement
+
+L’application repose sur une API qui fournit les données utilisateur :
+
+- Informations personnelles
+- Sessions sportives
+- Statistiques globales
+
+Ces données sont ensuite transformées et affichées dans des composants React dédiés.
+
+---
+
+##  Technologies utilisées
 
 - React
 - Vite
-- JavaScript (ES6)
+- JavaScript (ES6+)
 - CSS
-- Recharts (graphiques)
-- API REST (backend fourni)
+- Recharts (visualisation de données)
+- API REST
 
 ---
 
-## 🔐 Authentification
+##  Gestion de l’authentification
 
-L’utilisateur se connecte via un formulaire.
+L'utilisateur se connecte via un formulaire :
 
-- Récupération d’un **token JWT**
+- Envoi des identifiants à l’API
+- Récupération d’un **token d’authentification**
 - Stockage du token côté client
-- Protection des routes avec `PrivateRoute`
-
----
-
-## 📊 Fonctionnalités
-
-- Connexion utilisateur
-- Tableau de bord des performances
-- Affichage :
-  - Distance parcourue
-  - Calories brûlées
-  - Fréquence cardiaque
-- Page profil utilisateur
-- Visualisation avec graphiques dynamiques
+- Protection des routes avec un système de `PrivateRoute`
 
 ---
 
