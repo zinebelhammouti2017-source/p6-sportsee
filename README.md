@@ -45,11 +45,33 @@ Ces données sont ensuite transformées et affichées dans des composants React 
 
 L'utilisateur se connecte via un formulaire :
 
+
 - Envoi des identifiants à l’API
 - Récupération d’un **token d’authentification**
 - Stockage du token côté client
 - Protection des routes avec un système de `PrivateRoute`
 
----
+  ## Architecture du projet
 
-## 🧱 Architecture du projet
+  src/
+├── components/ # Composants réutilisables
+├── pages/ # Pages principales (Login, Dashboard, Profile)
+├── services/ # Appels API
+├── hooks/ # Hooks personnalisés
+├── context/ # Gestion globale (authentification)
+└── styles/ # CSS
+
+## Installation et lancement
+
+-git clone https://github.com/ton-repo/sportsee.git
+-cd sportsee
+-npm install
+-npm run dev
+
+L’application sera disponible sur : http://localhost:5173
+
+##  Auteur
+
+Zineb El Hammouti  
+
+
