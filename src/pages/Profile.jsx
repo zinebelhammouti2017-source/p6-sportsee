@@ -91,67 +91,76 @@ function Profile() {
       <TopNav />
 
       <div className="page-content">
-        <ProfileHeader utilisateur={utilisateur} />
+        <div className="container">
+          <div className="profil-page">
+            <div className="profil-colonne-gauche">
+              <ProfileHeader utilisateur={utilisateur} />
 
-        <div
-          style={{
-            maxWidth: "1130px",
-            margin: "0 auto",
-            display: "flex",
-            gap: "30px",
-            marginTop: "30px"
-          }}
-        >
-          <div
-            className="carte"
-            style={{
-              width: "50%"
-            }}
-          >
-            <h2 style={{ marginBottom: "20px" }}>Votre profil</h2>
+              <div className="carte profil-carte-infos">
+                <h2 className="titre-section">Votre profil</h2>
+                <div className="ligne-separation"></div>
 
-            <p>Âge : {utilisateur.userInfos.age}</p>
-            <p>Genre : {utilisateur.userInfos.gender || "Non renseigné"}</p>
-            <p>Taille : {utilisateur.userInfos.height} cm</p>
-            <p>Poids : {utilisateur.userInfos.weight} kg</p>
-          </div>
-
-          <div style={{ width: "50%" }}>
-            <h2 style={{ marginBottom: "8px" }}>Vos statistiques :</h2>
-            <p style={{ color: "#7b7b7b", marginBottom: "20px" }}>
-              depuis le {formaterDateDepuis(utilisateur.userInfos.createdAt)}
-            </p>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "20px"
-              }}
-            >
-              <div className="carte-stat">
-                <p>Temps total couru</p>
-                <h3>{formaterDuree(statistiquesProfil.totalDuration)}</h3>
+                <div className="profil-infos">
+                  <p className="profil-item">Âge : {utilisateur.userInfos.age}</p>
+                  <p className="profil-item">
+                    Genre : {utilisateur.userInfos.gender || "non renseigné"}
+                  </p>
+                  <p className="profil-item">
+                    Taille : {utilisateur.userInfos.height} cm
+                  </p>
+                  <p className="profil-item">
+                    Poids : {utilisateur.userInfos.weight} kg
+                  </p>
+                </div>
               </div>
+            </div>
 
-              <div className="carte-stat">
-                <p>Calories brûlées</p>
-                <h3>{statistiquesProfil.totalCalories} cal</h3>
-              </div>
+            <div className="profil-colonne-droite">
+              <div className="profil-stats">
+                <h2 className="titre-section titre-section-stats">
+                  Vos statistiques :
+                </h2>
 
-              <div className="carte-stat">
-                <p>Distance totale parcourue</p>
-                <h3>{statistiquesProfil.totalDistance} km</h3>
-              </div>
+                <p className="sous-texte">
+                  depuis le {formaterDateDepuis(utilisateur.userInfos.createdAt)}
+                </p>
 
-              <div className="carte-stat">
-                <p>Nombre de jours de repos</p>
-                <h3>{statistiquesProfil.joursDeRepos} jours</h3>
-              </div>
+                <div className="profil-stats-grille">
+                  <div className="carte-stat">
+                    <p className="carte-stat-label">Temps total couru</p>
+                    <h3 className="carte-stat-valeur">
+                      {formaterDuree(statistiquesProfil.totalDuration)}
+                    </h3>
+                  </div>
 
-              <div className="carte-stat">
-                <p>Nombre de sessions</p>
-                <h3>{statistiquesProfil.totalSessions} séances</h3>
+                  <div className="carte-stat">
+                    <p className="carte-stat-label">Calories brûlées</p>
+                    <h3 className="carte-stat-valeur">
+                      {statistiquesProfil.totalCalories} cal
+                    </h3>
+                  </div>
+
+                  <div className="carte-stat">
+                    <p className="carte-stat-label">Distance totale parcourue</p>
+                    <h3 className="carte-stat-valeur">
+                      {statistiquesProfil.totalDistance} km
+                    </h3>
+                  </div>
+
+                  <div className="carte-stat">
+                    <p className="carte-stat-label">Nombre de jours de repos</p>
+                    <h3 className="carte-stat-valeur">
+                      {statistiquesProfil.joursDeRepos} jours
+                    </h3>
+                  </div>
+
+                  <div className="carte-stat">
+                    <p className="carte-stat-label">Nombre de sessions</p>
+                    <h3 className="carte-stat-valeur">
+                      {statistiquesProfil.totalSessions} séances
+                    </h3>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

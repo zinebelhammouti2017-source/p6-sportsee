@@ -11,7 +11,16 @@ function Footer() {
           <span>Conditions générales</span>
           <span>Contact</span>
 
-          <span className="footer-logo">≋</span>
+               <div className="logo">
+  <div className="logo-barres">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    
+  </div>
+  
+</div>
         </div>
       </div>
     </footer>

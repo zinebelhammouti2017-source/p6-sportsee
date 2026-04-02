@@ -25,93 +25,33 @@ function UserHeader({ utilisateur, totalDistance }) {
   } ${dateInscription.getFullYear()}`
 
   return (
-    <section
-      style={{
-        maxWidth: "1130px",
-        margin: "0 auto 30px",
-        backgroundColor: "#f6f6f6",
-        borderRadius: "16px",
-        padding: "36px 54px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        gap: "30px"
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "30px"
-        }}
-      >
-        <img
-          src={utilisateur.userInfos.profilePicture}
-          alt={`Profil de ${utilisateur.userInfos.firstName}`}
-          style={{
-            width: "112px",
-            height: "112px",
-            objectFit: "cover",
-            borderRadius: "12px"
-          }}
-        />
+    <section className="user-header">
+      <div className="user-header-left">
+        <div className="user-header-photo-box">
+          <img
+            src={utilisateur.userInfos.profilePicture}
+            alt={`Profil de ${utilisateur.userInfos.firstName}`}
+            className="user-header-photo"
+          />
+        </div>
 
-        <div>
-          <h1
-            style={{
-              fontSize: "24px",
-              fontWeight: "500",
-              marginBottom: "10px",
-              color: "#111111"
-            }}
-          >
+        <div className="user-header-text">
+          <h1 className="user-header-name">
             {utilisateur.userInfos.firstName} {utilisateur.userInfos.lastName}
           </h1>
 
-          <p
-            style={{
-              color: "#7b7b7b",
-              fontSize: "16px"
-            }}
-          >
+          <p className="user-header-date">
             Membre depuis le {dateFormatee}
           </p>
         </div>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "32px"
-        }}
-      >
-        <p
-          style={{
-            color: "#7b7b7b",
-            fontSize: "16px"
-          }}
-        >
-          Distance totale parcourue
-        </p>
+      <div className="user-header-right">
+        <p className="user-header-label">Distance totale parcourue</p>
 
-        <div
-          style={{
-            backgroundColor: "#2338ff",
-            color: "#ffffff",
-            borderRadius: "12px",
-            padding: "20px 24px",
-            minWidth: "196px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "14px"
-          }}
-        >
-          <span style={{ fontSize: "26px" }}>✦</span>
-          <span style={{ fontSize: "20px", fontWeight: "500" }}>
-            {totalDistance} km
-          </span>
+        <div className="user-header-distance-box">
+          <span className="user-header-distance-icon">✦</span>
+          <span className="user-header-distance-value">{totalDistance} km</span>
         </div>
       </div>
     </section>

@@ -6,10 +6,15 @@ function TopNav() {
 
   return (
     <header className="topnav">
-      <div className="topnav-logo">
-        <span className="topnav-logo-icon">≋</span>
-        <span>SPORTSEE</span>
-      </div>
+      <div className="logo">
+  <div className="logo-barres">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <span className="logo-texte">SPORTSEE</span>
+</div>
 
       <nav className="topnav-menu">
         <Link to="/dashboard" className="topnav-link">
