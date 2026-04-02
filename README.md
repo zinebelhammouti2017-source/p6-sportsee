@@ -1,16 +1,54 @@
-# React + Vite
+# 🏃 SportSee - Dashboard de performance sportive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Description
 
-Currently, two official plugins are available:
+SportSee est une application web permettant de visualiser les performances sportives d’un utilisateur à travers un tableau de bord interactif.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Ce projet a été réalisé dans le cadre de la formation OpenClassrooms.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🎯 Objectifs du projet
 
-## Expanding the ESLint configuration
+- Créer une interface React moderne
+- Connecter une API pour récupérer les données utilisateur
+- Afficher des statistiques sous forme de graphiques
+- Gérer l’authentification utilisateur avec token sécurisé
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ⚙️ Technologies utilisées
+
+- React
+- Vite
+- JavaScript (ES6)
+- CSS
+- Recharts (graphiques)
+- API REST (backend fourni)
+
+---
+
+## 🔐 Authentification
+
+L’utilisateur se connecte via un formulaire.
+
+- Récupération d’un **token JWT**
+- Stockage du token côté client
+- Protection des routes avec `PrivateRoute`
+
+---
+
+## 📊 Fonctionnalités
+
+- Connexion utilisateur
+- Tableau de bord des performances
+- Affichage :
+  - Distance parcourue
+  - Calories brûlées
+  - Fréquence cardiaque
+- Page profil utilisateur
+- Visualisation avec graphiques dynamiques
+
+---
+
+## 🧱 Architecture du projet
