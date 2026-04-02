@@ -56,9 +56,11 @@ L'utilisateur se connecte via un formulaire :
 
 git clone https://github.com/zinebelhammouti2017-source/p6-sportsee.git
 
--Cd sportsee
--Npm install
--Npm run dev
+-cd sportsee
+
+-npm install
+
+-npm run dev
 
 L’application sera disponible sur : http://localhost:5173
 
