@@ -51,21 +51,14 @@ L'utilisateur se connecte via un formulaire :
 - Stockage du token côté client
 - Protection des routes avec un système de `PrivateRoute`
 
-  ## 🧱 Architecture du projet
-src/
-components/
-pages/
-services/
-hooks/
-context/
-styles/
 
 ## Installation et lancement
 
 git clone https://github.com/zinebelhammouti2017-source/p6-sportsee.git
--cd sportsee
--npm install
--npm run dev
+
+-Cd sportsee
+-Npm install
+-Npm run dev
 
 L’application sera disponible sur : http://localhost:5173
 
