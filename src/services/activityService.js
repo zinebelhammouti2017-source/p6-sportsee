@@ -1,4 +1,5 @@
 import { activityData } from "../mocks/activityData"
+import { gererErreurAuthentification } from "./apiUtils"
 
 const utiliserMock = false
 
@@ -15,6 +16,10 @@ async function getActivity(token) {
       }
     }
   )
+
+  if (gererErreurAuthentification(reponse)) {
+    return
+  }
 
   if (!reponse.ok) {
     throw new Error("Erreur lors de la récupération de l'activité")

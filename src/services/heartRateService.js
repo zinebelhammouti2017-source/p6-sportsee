@@ -1,4 +1,22 @@
+import { gererErreurAuthentification } from "./apiUtils"
+
 const utiliserMock = false
+
+function recupererIndexJourLundiPremier(dateTexte) {
+  const date = new Date(dateTexte)
+
+  return (date.getDay() + 6) % 7
+}
+
+function calculerMoyenne(tableau) {
+  if (tableau.length === 0) {
+    return null
+  }
+
+  const total = tableau.reduce((somme, valeur) => somme + valeur, 0)
+
+  return Math.round(total / tableau.length)
+}
 
 async function getHeartRate(token) {
   if (utiliserMock) {
@@ -14,38 +32,48 @@ async function getHeartRate(token) {
     }
   )
 
+   if (gererErreurAuthentification(reponse)) {
+    return
+  }
+
   if (!reponse.ok) {
     throw new Error("Erreur lors de la récupération de la fréquence cardiaque")
   }
 
   const donneesApi = await reponse.json()
 
-  const jours = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"]
-  const ordreSemaine = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
+  const semaine = [
+    { jour: "Lun", minValeurs: [], maxValeurs: [], moyenneValeurs: [] },
+    { jour: "Mar", minValeurs: [], maxValeurs: [], moyenneValeurs: [] },
+    { jour: "Mer", minValeurs: [], maxValeurs: [], moyenneValeurs: [] },
+    { jour: "Jeu", minValeurs: [], maxValeurs: [], moyenneValeurs: [] },
+    { jour: "Ven", minValeurs: [], maxValeurs: [], moyenneValeurs: [] },
+    { jour: "Sam", minValeurs: [], maxValeurs: [], moyenneValeurs: [] },
+    { jour: "Dim", minValeurs: [], maxValeurs: [], moyenneValeurs: [] }
+  ]
 
-  const donneesTrieesParDate = [...donneesApi].sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
-  )
+  donneesApi.forEach((session) => {
+    const indexJour = recupererIndexJourLundiPremier(session.date)
 
-  const donneesLimitees = donneesTrieesParDate.slice(-7)
+    semaine[indexJour].minValeurs.push(session.heartRate.min)
+    semaine[indexJour].maxValeurs.push(session.heartRate.max)
+    semaine[indexJour].moyenneValeurs.push(session.heartRate.average)
+  })
 
-  const donneesFormatees = donneesLimitees.map((session) => {
-    const date = new Date(session.date)
-
+  const donneesFinales = semaine.map((jour) => {
     return {
-      jour: jours[date.getDay()],
-      date: session.date,
-      min: session.heartRate.min,
-      max: session.heartRate.max,
-      moyenne: session.heartRate.average
+      jour: jour.jour,
+      min: calculerMoyenne(jour.minValeurs),
+      max: calculerMoyenne(jour.maxValeurs),
+      moyenne: calculerMoyenne(jour.moyenneValeurs)
     }
   })
 
-  const donneesFinales = donneesFormatees.sort((a, b) => {
-    return ordreSemaine.indexOf(a.jour) - ordreSemaine.indexOf(b.jour)
-  })
-
-  return donneesFinales
+  return {
+  donnees: donneesFinales,
+  startDate: "2025-05-28",
+  endDate: "2025-06-04"
+}
 }
 
 export { getHeartRate }

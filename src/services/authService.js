@@ -1,3 +1,5 @@
+import { gererErreurAuthentification } from "./apiUtils"
+
 async function connecterUtilisateur(username, password) {
   const reponse = await fetch("http://localhost:8000/api/login", {
     method: "POST",
@@ -9,6 +11,10 @@ async function connecterUtilisateur(username, password) {
       password: password
     })
   })
+
+   if (gererErreurAuthentification(reponse)) {
+    return
+  }
 
   if (!reponse.ok) {
     throw new Error("Identifiants incorrects")

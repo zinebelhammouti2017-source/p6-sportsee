@@ -7,7 +7,11 @@ import { getHeartRate } from "../services/heartRateService"
 
 function PerformanceSection() {
   const [activite, setActivite] = useState(null)
-  const [frequenceCardiaque, setFrequenceCardiaque] = useState(null)
+  const [frequenceCardiaque, setFrequenceCardiaque] = useState({
+    donnees: [],
+    startDate: "",
+    endDate: ""
+  })
   const [erreur, setErreur] = useState(null)
 
   const { token } = useAuth()
@@ -35,7 +39,7 @@ function PerformanceSection() {
     return <p>{erreur}</p>
   }
 
-  if (!activite || !frequenceCardiaque) {
+  if (!activite || frequenceCardiaque.donnees.length === 0) {
     return <p>Chargement...</p>
   }
 
@@ -62,7 +66,11 @@ function PerformanceSection() {
         </div>
 
         <div style={{ flex: 1.1 }}>
-          <HeartRateChart data={frequenceCardiaque} />
+          <HeartRateChart
+            data={frequenceCardiaque.donnees}
+            startDate={frequenceCardiaque.startDate}
+            endDate={frequenceCardiaque.endDate}
+          />
         </div>
       </div>
     </section>

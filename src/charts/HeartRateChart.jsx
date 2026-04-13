@@ -9,32 +9,45 @@ import {
   CartesianGrid
 } from "recharts"
 
-function HeartRateChart({ data }) {
-  const moyenneGenerale = Math.round(
-    data.reduce((total, element) => total + element.moyenne, 0) / data.length
+function HeartRateChart({ data, startDate, endDate }) {
+  const donneesAvecValeurs = data.filter(
+    (element) => element.moyenne !== null
   )
 
-  const premiereDate = new Date(data[0].date)
-  const derniereDate = new Date(data[data.length - 1].date)
+  const moyenneGenerale =
+    donneesAvecValeurs.length > 0
+      ? Math.round(
+          donneesAvecValeurs.reduce(
+            (total, element) => total + element.moyenne,
+            0
+          ) / donneesAvecValeurs.length
+        )
+      : 0
+const mois = [
+  "janv.",
+  "févr.",
+  "mars",
+  "avr.",
+  "mai",
+  "juin",
+  "juil.",
+  "août",
+  "sept.",
+  "oct.",
+  "nov.",
+  "déc."
+]
 
-  const mois = [
-    "janv.",
-    "févr.",
-    "mars",
-    "avr.",
-    "mai",
-    "juin",
-    "juil.",
-    "août",
-    "sept.",
-    "oct.",
-    "nov.",
-    "déc."
-  ]
+let texteDate = ""
 
-  const texteDate = `${premiereDate.getDate()} ${
-    mois[premiereDate.getMonth()]
-  } - ${derniereDate.getDate()} ${mois[derniereDate.getMonth()]}`
+if (startDate && endDate) {
+  const debut = new Date(startDate)
+  const fin = new Date(endDate)
+
+  texteDate = `${debut.getDate()} ${
+    mois[debut.getMonth()]
+  } - ${fin.getDate()} ${mois[fin.getMonth()]}`
+}
 
   return (
     <div
@@ -106,6 +119,7 @@ function HeartRateChart({ data }) {
               strokeWidth={2}
               dot={{ r: 3 }}
               activeDot={{ r: 5 }}
+              connectNulls={false}
             />
           </BarChart>
         </ResponsiveContainer>

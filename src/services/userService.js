@@ -1,4 +1,5 @@
 import { userData } from "../mocks/userData"
+import { gererErreurAuthentification } from "./apiUtils"
 
 const utiliserMock = false
 
@@ -12,6 +13,11 @@ async function getUser(token) {
       Authorization: `Bearer ${token}`
     }
   })
+
+
+  if (gererErreurAuthentification(reponse)) {
+    return
+  }
 
   if (!reponse.ok) {
     throw new Error("Erreur lors de la récupération utilisateur")
@@ -37,5 +43,6 @@ async function getUser(token) {
     }
   }
 }
+
 
 export { getUser }
