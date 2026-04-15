@@ -41,7 +41,7 @@ Les données récupérées sont ensuite :
 
 ## Technologies utilisées
 
-* React
+* REACT 
 * Vite
 * JavaScript (ES6+)
 * CSS
