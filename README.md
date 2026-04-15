@@ -1,71 +1,86 @@
-#  SportSee - Dashboard de performance sportive
+# SportSee - Tableau de bord de performance sportive
 
-##  Présentation
+## Présentation
 
-SportSee est une application web permettant de visualiser les performances sportives d’un utilisateur à travers un tableau de bord interactif et moderne.
+SportSee est une application web développée avec React permettant de visualiser les performances sportives d’un utilisateur à travers un tableau de bord interactif.
 
-L'objectif est de fournir une interface claire, rapide et intuitive pour suivre son activité physique et analyser ses statistiques.
+L’objectif est de proposer une interface claire, fluide et intuitive pour suivre l’activité physique d’un utilisateur et analyser ses statistiques.
 
----
+## Fonctionnalités principales
 
-##  Fonctionnalités principales
+* Authentification utilisateur
+* Tableau de bord des performances
+* Visualisation de données dynamiques avec des graphiques
+* Page profil utilisateur
+* Navigation avec React Router
+* Protection des routes privées
 
--  Authentification utilisateur sécurisée
--  Tableau de bord des performances
--  Visualisation de données dynamiques (graphiques)
--  Page profil utilisateur
--  Navigation fluide avec React Router
+## Fonctionnement
 
----
+L’application s’appuie sur une API fournie dans le cadre du projet OpenClassrooms.
+Cette API permet de récupérer les données utilisateur, notamment :
 
-##  Fonctionnement
+* les informations personnelles
+* les séances sportives
+* les statistiques globales
 
-L’application repose sur une API qui fournit les données utilisateur :
+Les données récupérées sont ensuite transformées dans les services afin d’être adaptées au format attendu par l’application, puis affichées dans les composants React.
 
-- Informations personnelles
-- Sessions sportives
-- Statistiques globales
+## Technologies utilisées
 
-Ces données sont ensuite transformées et affichées dans des composants React dédiés.
+* React
+* Vite
+* JavaScript (ES6+)
+* CSS
+* Recharts
+* API REST
+* React Router
+* Context API
 
----
+## Gestion de l’authentification
 
-##  Technologies utilisées
+L’utilisateur se connecte via un formulaire.
 
-- React
-- Vite
-- JavaScript (ES6+)
-- CSS
-- Recharts (visualisation de données)
-- API REST
+Le processus est le suivant :
 
----
-
-##  Gestion de l’authentification
-
-L'utilisateur se connecte via un formulaire :
-
-
-- Envoi des identifiants à l’API
-- Récupération d’un **token d’authentification**
-- Stockage du token côté client
-- Protection des routes avec un système de `PrivateRoute`
-
+* envoi des identifiants à l’API
+* récupération d’un token d’authentification
+* stockage du token côté client
+* protection des routes avec `PrivateRoute`
+* envoi du token dans les headers pour les requêtes sécurisées
 
 ## Installation et lancement
 
+### 1. Cloner le dépôt
+
+```bash
 git clone https://github.com/zinebelhammouti2017-source/p6-sportsee.git
+```
 
--cd sportsee
+### 2. Lancer le backend
 
--npm install
+Se placer dans le dossier backend fourni avec le projet OpenClassrooms, puis exécuter :
 
--npm run dev
+```bash
+npm install
+npm run dev
+```
 
-L’application sera disponible sur : http://localhost:5173
+### 3. Lancer le front-end
 
-##  Auteur
+Se placer dans le dossier front-end (`source`), puis exécuter :
 
-Zineb El Hammouti  
+```bash
+npm install
+npm run dev
+```
 
+L’application sera disponible sur :
 
+```bash
+http://localhost:5173
+```
+
+## Auteur
+
+Zineb El Hammouti
