@@ -41,7 +41,7 @@ Les données récupérées sont ensuite :
 
 ## Technologies utilisées
 
-* REACT 
+* React
 * Vite
 * JavaScript (ES6+)
 * CSS
@@ -115,6 +115,8 @@ npx nodemon app/index.js
 ```bash
 http://localhost:5173
 ```
+
+---
 
 ## Remarques
 
