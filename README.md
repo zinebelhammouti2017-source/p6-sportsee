@@ -41,14 +41,14 @@ Les données récupérées sont ensuite :
 
 ## Technologies utilisées
 
-* React
-* Vite
-* JavaScript (ES6+)
-* CSS
-* Recharts
-* React Router
-* Context API
-* API REST
+* 'React'
+* 'Vite'
+* 'JavaScript (ES6+)'
+* 'CSS'
+* 'Recharts'
+* 'React Router'
+* 'Context API'
+* 'API REST'
 
 ---
 
