@@ -23,7 +23,7 @@ L’objectif de cette application est de proposer une interface claire, fluide e
 
 ## Fonctionnement
 
-L’application repose sur une API fournie dans le cadre du projet OpenClassrooms.
+L’application repose sur une API.
 
 Cette API permet de récupérer :
 
@@ -95,7 +95,7 @@ npm run dev
 
 ---
 
-### 4. Lancer le backend (API OpenClassrooms)
+### 4. Lancer le backend (API)
 
 Se placer dans le dossier :
 
@@ -120,8 +120,6 @@ http://localhost:5173
 ---
 
 ## Remarques
-
-Le backend utilisé dans ce projet est fourni par OpenClassrooms.
 
 Le travail réalisé porte sur :
 
